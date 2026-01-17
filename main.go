@@ -3,6 +3,7 @@ package main
 import (
 	"auth-api/config"
 	"auth-api/handlers"
+
 	"log"
 	"net/http"
 
@@ -22,6 +23,7 @@ func main() {
 		})
 	})
 	r.POST("/login", handlers.LoginHandler)
+	r.POST("/register", handlers.RegisterHandler)
 
 	if err := r.Run(":8080"); err != nil {
 		log.Fatal(err)

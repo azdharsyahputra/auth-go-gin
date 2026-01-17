@@ -32,3 +32,11 @@ func GetUserByEmail(email string) (*User, error) {
 
 	return &user, nil
 }
+func CreateUser(email, passwordHash string) error {
+	_, err := config.DB.Exec(
+		"INSERT INTO users (email, password) VALUES (?,?)",
+		email,
+		passwordHash,
+	)
+	return err
+}

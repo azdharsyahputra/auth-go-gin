@@ -25,3 +25,7 @@ func GenerateJWT(UserID int, role string) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(jwtSecret)
 }
+
+func JwtSecret() []byte {
+	return jwtSecret
+}

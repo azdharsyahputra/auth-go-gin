@@ -23,7 +23,7 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 
-	user, err := services.Login(req.Email, req.Password)
+	token, err := services.Login(req.Email, req.Password)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{
 			"error": "Invalid email or password",
@@ -32,11 +32,6 @@ func LoginHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Login successful",
-		"user": gin.H{
-			"id":    user.ID,
-			"email": user.Email,
-			"role":  user.Role,
-		},
+		"token": token,
 	})
 }
